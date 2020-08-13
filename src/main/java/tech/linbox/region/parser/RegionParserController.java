@@ -6,21 +6,23 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 import tech.linbox.region.parser.data.dao.RegionPolygonRepository;
 import tech.linbox.region.parser.data.dao.RegionRepository;
 import tech.linbox.region.parser.data.entity.RegionPolygon;
 
-import javax.annotation.PostConstruct;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 
 @Slf4j
-@Service
-public class RegionParserService {
+@RestController
+public class RegionParserController {
   @Autowired RegionRepository regionRepository;
   @Autowired RegionPolygonRepository regionPolygonRepository;
 
-  //  @PostConstruct
+  @PostMapping("/parse/region")
   public void parseRegion() {
     try {
       ClassPathResource resource = new ClassPathResource("ok_data_level3.xlsx");
@@ -35,7 +37,7 @@ public class RegionParserService {
     }
   }
 
-  @PostConstruct
+  @PostMapping("/parse/region/polygon")
   public void parseRegionPolygon() {
     try {
       ClassPathResource resource = new ClassPathResource("ok_geo.csv");
