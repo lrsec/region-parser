@@ -11,3 +11,10 @@
 * 查看 src/main/application.yml 中的数据库配置，以符合当前数据库
 * 运行程序 ```./run.sh```
 
+* 运行命令
+
+```
+curl -XPOST 'http://localhost:8080/parse/region'
+curl -XPOST 'http://localhost:8080/parse/region/polygon'
+curl -XPOST 'http://localhost:8080/parse/region/loc'
+```
